@@ -1,0 +1,182 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-gold: var(--gold);
+  --color-amber: var(--amber);
+  --color-saffron: var(--saffron);
+  --color-onyx: var(--onyx);
+  --color-ivory: var(--ivory);
+  --color-glass: var(--glass);
+  --font-display: "Cinzel", serif;
+  --font-serif: "Cormorant Garamond", serif;
+  --font-deva: "Noto Serif Devanagari", serif;
+  --font-sans: "Plus Jakarta Sans", sans-serif;
+}
+
+/* Cosmic Void (default) */
+:root {
+  --radius: 1rem;
+  --background: oklch(0.1 0.006 285);
+  --onyx: oklch(0.15 0.008 270);
+  --foreground: oklch(0.93 0.02 85);
+  --ivory: oklch(0.95 0.035 85);
+  --card: oklch(0.17 0.01 280 / 0.65);
+  --card-foreground: var(--foreground);
+  --popover: oklch(0.15 0.01 280 / 0.92);
+  --popover-foreground: var(--foreground);
+  --gold: oklch(0.76 0.13 85);
+  --amber: oklch(0.77 0.16 70);
+  --saffron: oklch(0.68 0.21 45);
+  --primary: var(--gold);
+  --primary-foreground: oklch(0.12 0.01 80);
+  --secondary: oklch(0.2 0.01 280);
+  --secondary-foreground: var(--foreground);
+  --muted: oklch(0.2 0.01 280);
+  --muted-foreground: oklch(0.68 0.02 85);
+  --accent: oklch(0.76 0.13 85 / 0.12);
+  --accent-foreground: var(--gold);
+  --destructive: oklch(0.6 0.2 27);
+  --destructive-foreground: oklch(0.98 0 0);
+  --border: oklch(0.76 0.13 85 / 0.18);
+  --input: oklch(0.76 0.13 85 / 0.2);
+  --ring: var(--gold);
+  --glass: oklch(0.17 0.01 280 / 0.6);
+  --particle: 212, 175, 55;
+  --gradient-gold: linear-gradient(110deg, oklch(0.62 0.12 75), oklch(0.86 0.12 90) 45%, oklch(0.72 0.15 70) 60%, oklch(0.6 0.12 70));
+  --glow-gold: 0 0 40px -6px oklch(0.76 0.13 85 / 0.55);
+  --aura: oklch(0.76 0.13 85 / 0.13);
+}
+
+/* Ancient Parchment */
+.parchment {
+  --background: oklch(0.96 0.012 85);
+  --onyx: oklch(0.93 0.018 85);
+  --foreground: oklch(0.2 0.006 50);
+  --ivory: oklch(0.22 0.01 50);
+  --card: oklch(0.99 0.008 85 / 0.7);
+  --popover: oklch(0.98 0.01 85 / 0.96);
+  --gold: oklch(0.56 0.09 80);
+  --amber: oklch(0.6 0.12 65);
+  --saffron: oklch(0.58 0.17 45);
+  --primary-foreground: oklch(0.98 0.01 85);
+  --secondary: oklch(0.92 0.02 85);
+  --muted: oklch(0.92 0.02 85);
+  --muted-foreground: oklch(0.45 0.02 60);
+  --border: oklch(0.56 0.09 80 / 0.25);
+  --glass: oklch(0.99 0.008 85 / 0.65);
+  --particle: 154, 123, 56;
+  --gradient-gold: linear-gradient(110deg, oklch(0.48 0.08 70), oklch(0.62 0.1 85) 50%, oklch(0.45 0.08 70));
+  --glow-gold: 0 0 30px -10px oklch(0.56 0.09 80 / 0.4);
+  --aura: oklch(0.56 0.09 80 / 0.1);
+}
+
+@layer base {
+  * { border-color: var(--color-border); }
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    transition: background-color 0.8s ease, color 0.8s ease;
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection { background: var(--gold); color: var(--primary-foreground); }
+}
+
+@utility glass {
+  background: var(--glass);
+  backdrop-filter: blur(40px) saturate(140%);
+  border: 1px solid var(--border);
+}
+
+@utility spot {
+  position: relative;
+  isolation: isolate;
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: radial-gradient(420px circle at var(--mx, -999px) var(--my, -999px), var(--aura), transparent 60%);
+    z-index: -1;
+    pointer-events: none;
+  }
+}
+
+@utility text-gold-liquid {
+  background: var(--gradient-gold);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer 6s linear infinite;
+}
+
+@utility bg-gold-liquid {
+  background: var(--gradient-gold);
+  background-size: 200% auto;
+  animation: shimmer 5s linear infinite;
+}
+
+@utility glow { box-shadow: var(--glow-gold); }
+
+@keyframes shimmer { to { background-position: 200% center; } }
+@keyframes spin-slow { to { transform: rotate(360deg); } }
+@utility animate-spin-slow { animation: spin-slow 120s linear infinite; }
+@utility animate-spin-slower { animation: spin-slow 240s linear infinite reverse; }
+
+:root { --mandala-opacity: 0.16; --specular: oklch(0.85 0.12 85 / 0.32); --sheen: oklch(1 0 0 / 0.04); }
+.parchment { --mandala-opacity: 0.22; --specular: oklch(0.56 0.09 80 / 0.35); --sheen: oklch(1 0 0 / 0.5); }
+
+@utility specular {
+  border-top-color: var(--specular);
+  background-image: linear-gradient(to bottom, var(--sheen), transparent 40%);
+  transition: border-color 0.4s ease, box-shadow 0.4s ease, transform 0.4s ease;
+  &:hover, &:active { border-top-color: var(--gold); }
+}
+
+@utility sweep {
+  position: relative;
+  overflow: hidden;
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(105deg, transparent 35%, oklch(1 0 0 / 0.55) 50%, transparent 65%);
+    transform: translateX(-120%);
+    animation: sweep 3.6s ease-in-out infinite;
+  }
+}
+@keyframes sweep { 0%, 55% { transform: translateX(-120%); } 100% { transform: translateX(120%); } }
+@keyframes pulse-core { 0%, 100% { opacity: 0.55; transform: scale(0.96); } 50% { opacity: 1; transform: scale(1.04); } }
+@utility animate-core { animation: pulse-core 6s ease-in-out infinite; transform-origin: center; }
+@utility hero-aura { background: radial-gradient(circle at 50% 45%, oklch(0.76 0.13 85 / 0.16) 0%, oklch(0.77 0.16 70 / 0.05) 35%, transparent 70%); }
+@utility pb-safe { padding-bottom: env(safe-area-inset-bottom); }
